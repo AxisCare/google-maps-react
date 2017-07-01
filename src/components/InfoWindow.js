@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import ReactDOMServer from 'react-dom/server'
 
 export class InfoWindow extends React.Component {
 
@@ -76,7 +75,9 @@ export class InfoWindow extends React.Component {
 
   renderChildren() {
     const {children} = this.props;
-    return ReactDOMServer.renderToString(children);
+    const container = document.createElement('div');
+    ReactDOM.render(children, container);
+    return container.innerHTML;
   }
 
   render() {
